@@ -1,3 +1,8 @@
+<?php
+    include 'database.php';
+    $conn = getConnection();
+?>
+
 <!DOCTYPE html>
 
 <html>

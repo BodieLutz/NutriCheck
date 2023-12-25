@@ -13,4 +13,11 @@ function getConnection(){
     return $conn;
 }
 
+function getMaxRecipeID(){
+    $stmt = $conn->prepare("select MAX(id) as num from Recipes");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result;
+}
+
 ?>

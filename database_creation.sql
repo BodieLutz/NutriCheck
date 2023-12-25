@@ -9,6 +9,7 @@ CREATE TABLE Recipes(
     name varchar(255),
     unit varchar(255),
     goal varchar(255),
+    cals int,
     protein int,
     fats int,
     carbs int,
@@ -21,6 +22,8 @@ CREATE TABLE Ingredients(
     name varchar(255),
     unit varchar(255),
     total_weight int,
+    num_serv int,
+    cals int,
     protein int,
     fats int,
     carbs int,
@@ -28,10 +31,15 @@ CREATE TABLE Ingredients(
     FOREIGN KEY (recipe_id) REFERENCES recipes(id)
 );
 
-CREATE TABLE instructions(
+CREATE TABLE Instructions(
     id int AUTO_INCREMENT,
     recipe_id int,
     page varchar(255),
     PRIMARY KEY(id),
     FOREIGN KEY (recipe_id) REFERENCES recipes(id)
 );
+
+INSERT INTO Recipes(name, unit, goal, cals, protein, fats, carbs) VALUES ("Chicken Noodle", "oz", "NA", 62.1, 1.9, 1.5, 9.6);
+
+INSERT INTO Ingredients(name, recipe_id, unit, total_weight, num_serv, cals, protein, fats, carbs) VALUES ("Egg Noodle", 1, "oz", 16, 8, 220, 8, 2.5, 40);
+INSERT INTO Ingredients(name, recipe_id, unit, total_weight, num_serv, cals, protein, fats, carbs) VALUES ("Cream of Chicken", 1, "oz", 22.6, 5, 120, 2, 8, 9);
