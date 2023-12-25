@@ -7,8 +7,8 @@
 .form-popup {
     position: fixed;
     bottom: 170px;
-    left: 550px;
-    width: 400px;
+    left: 500px;
+    width: 500px;
     height: 400px;
     border: 3px solid #fe7f2d;
     box-shadow: 0 0 10px #fe7f2d;
@@ -43,15 +43,15 @@ h1{
 
 .child-div{
     margin: 40px 0px;
-    padding-left: 30px;
+    padding-left: 50px;
 }
 
 #readonly{
-    margin-left: 60px;
+    margin-left: 70px;
 }
 
 .btn{
-    margin-left: 150px;
+    margin-left: 200px;
     margin-top: 100px;
 }
 
@@ -59,6 +59,7 @@ input{
     border: 3px solid #fe7f2d;
     border-radius: 5px;
     box-shadow: 0 0 10px #fe7f2d;
+    font-size: 14pt;
 }
 
 input:focus{

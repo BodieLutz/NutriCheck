@@ -1,7 +1,7 @@
 <?php
     include 'database.php';
     $conn = getConnection();
-    $id = getMaxRecipeID($conn);
+    $id = getMaxRecipeID($conn) + 1;
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 
                     <div class="child-div" id="readonly">
                         <label for="id"><b>ID: </b></label>
-                        <input type="number" name="id" value="" readonly>
+                        <input type="number" name="id" value="<?php echo $id; ?>" readonly>
                     </div>
 
                     <button type="submit" class="btn">Submit</button>

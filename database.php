@@ -17,7 +17,9 @@ function getMaxRecipeID($conn){
     $stmt = $conn->prepare("select MAX(id) as num from Recipes");
     $stmt->execute();
     $result = $stmt->get_result();
-    return $result;
+    $result = $result->fetch_array();
+    $num = intval($result[0]);
+    return $num;
 }
 
 ?>
