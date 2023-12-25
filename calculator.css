@@ -62,9 +62,9 @@ legend{
 }
 
 #weight_box{
-        overflow: hidden;
-        display: inline-flex;
-        margin-left: 10px;
+    overflow: hidden;
+    display: inline-flex;
+    margin-left: 10px;
 }
 
 #weight_box>.sep,label{
@@ -149,8 +149,9 @@ input[type="radio"]:checked{
     line-height: 15px;
     text-align: center;
     border: 2px solid black;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color:#fe7f2d;
+    box-shadow: 0 0 10px #fe7f2d;
     color:black;
     width: 25px;
     height: 20px;    

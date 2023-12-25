@@ -5,8 +5,7 @@
         <title>Nutri-Check</title>
         <link rel="stylesheet" href="calculator.css">
         <link rel="stylesheet" href="common.css"> 
-
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script>
             function nextIngredient(){
                 var servings = parseInt(document.getElementById("servings").value);
