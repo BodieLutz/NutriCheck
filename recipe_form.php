@@ -17,7 +17,7 @@
     <body>
         <div class="form-popup" id="myForm">
                 <form action="calculator.php" method="post" class="form-container">
-                    <h1>Recipe Input</h1>
+                    <h1>Recipe Information</h1>
 
                     <div class="child-div">
                         <label for="name"><b>Recipe Name: </b></label>

@@ -7,4 +7,5 @@ $carbs = $_POST['carbs'];
 $fats = $_POST['fats'];
 $protein = $_POST['protein'];
 $unit = $_POST['unit']
-$goal = $_POST[];
+$goal = $_POST['goal'];
+

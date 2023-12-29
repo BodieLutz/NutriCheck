@@ -64,6 +64,7 @@
                 var unit = document.querySelector('input[name="unit"]:checked').value;
                 var recipe_name = document.getElementById("recipe_name-hidden").value;
                 var recipe_id = parseInt(document.getElementById("recipe_id-hidden").value);
+                var goal = document.getElementById("goal-hidden").value;
 
                 //Change label to display selected unit
                 document.getElementById("unit_label").innerHTML = unit;
@@ -101,6 +102,7 @@
 
     <?php 
         $recipe_name = $_POST['name'];
+        $goal = $_POST['goal'];
         $recipe_id = $_POST['id'];
     ?>
 
@@ -167,6 +169,7 @@
                     <input type="hidden" class="hidden_input" id="unit-hidden">
                     <input type="hidden" class="hidden_input" id="recipe_id-hidden" value=<?php echo $recipe_id?> >
                     <input type="hidden" class="hidden_input" id="recipe_name-hidden" value=<?php echo $recipe_name?> >
+                    <input type="hidden" class="hidden_input" id="goal-hidden" value=<?php echo $goal?> >
                 </form>
 
                 <fieldset id="instruction_fieldset">
