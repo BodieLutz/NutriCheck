@@ -46,13 +46,9 @@ h1{
     padding-left: 50px;
 }
 
-#readonly{
-    margin-left: 70px;
-}
-
 .btn{
     margin-left: 200px;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 input{
@@ -63,6 +59,19 @@ input{
 }
 
 input:focus{
+    outline: none;
+    box-shadow: 0 0 10px #5688C7;
+    border: 3px solid #5688C7;
+}
+
+select{
+    border: 3px solid #fe7f2d;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #fe7f2d;
+    font-size: 14pt;
+}
+
+select:focus{
     outline: none;
     box-shadow: 0 0 10px #5688C7;
     border: 3px solid #5688C7;
