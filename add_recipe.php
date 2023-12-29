@@ -1,4 +1,6 @@
 <?php
+include 'database.php';
+$conn = getConnection();
 
 $recipe_name = $_POST['recipe_name'];
 $recipe_id = $_POST['recipe_id'];
@@ -8,4 +10,6 @@ $fats = $_POST['fats'];
 $protein = $_POST['protein'];
 $unit = $_POST['unit']
 $goal = $_POST['goal'];
+
+addRecipe($conn, $recipe_name, $unit, $goal, $cals, $protein, $fats, $carbs);
 
