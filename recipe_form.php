@@ -24,6 +24,15 @@
                         <input type="text" name="name" required>
                     </div>
 
+                    <div class="child-div">
+                        <label for="goal"><b>Goal: </b></label>
+                        <select name="goal" required>
+                            <option value="gain">Gain</option>
+                            <option value="lose">Lose</option>
+                            <option value="NA">N/A</option>
+                        </select>
+                    </div>
+
                     <div class="child-div" id="readonly">
                         <label for="id"><b>ID: </b></label>
                         <input type="number" name="id" value="<?php echo $id; ?>" readonly>

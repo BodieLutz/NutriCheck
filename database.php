@@ -22,4 +22,8 @@ function getMaxRecipeID($conn){
     return $num;
 }
 
+function addRecipe($conn, $name, $unit, $goal, $cals, $protein, $fats, $carbs){
+    
+}
+
 ?>
