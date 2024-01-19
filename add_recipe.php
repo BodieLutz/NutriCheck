@@ -8,8 +8,9 @@ $cals = $_POST['cals'];
 $carbs = $_POST['carbs'];
 $fats = $_POST['fats'];
 $protein = $_POST['protein'];
-$unit = $_POST['unit']
+$unit = $_POST['unit'];
 $goal = $_POST['goal'];
 
+echo $cals;
 addRecipe($conn, $recipe_name, $unit, $goal, $cals, $protein, $fats, $carbs);
 

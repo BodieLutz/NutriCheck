@@ -23,8 +23,8 @@ function getMaxRecipeID($conn){
 }
 
 function addRecipe($conn, $name, $unit, $goal, $cals, $protein, $fats, $carbs){
-    $stmt = $conn->prepare("INSERT INTO recipes VALUES ?, ?, ?, ?, ?, ?, ?");
-    $stmt->bind_param("sssffff", $name, $unit, $goal, $cals, $protein, $fats, $carbs);
+    $stmt = $conn->prepare("INSERT INTO recipes(name, unit, goal, cals, protein, fats, carbs) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssdddd", $name, $unit, $goal, $cals, $protein, $fats, $carbs);
     $stmt->execute();
 }
 

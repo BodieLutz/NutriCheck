@@ -40,7 +40,7 @@
                 document.getElementById("protein-hidden").value = protein;
 
                 //reset the form
-                document.getElementById("input_form").reset();
+                //document.getElementById("input_form").reset();
 
                 //Ensure same unit is selected and cannot be changed
                 if(unit == "oz"){
@@ -69,6 +69,13 @@
                 //Change label to display selected unit
                 document.getElementById("unit_label").innerHTML = unit;
 
+                //Set unit-hidden label to correct unit
+                document.getElementById("unit-hidden").value = unit;
+
+                //Set the ing_name-hidden label
+                let name = document.getElementById("ing_name").value;
+                document.getElementById("ing_name-hidden").value = name;
+
                 //round values
                 cals = (cals/weight).toFixed(1);
                 fats = (fats/weight).toFixed(1);
@@ -84,8 +91,9 @@
                 //Add recipe to the database
 
                 //make the post data for the AJAX call
-                var postData = $('hidden-form').serialize();
-
+                var postData = $('#hidden-form').serialize();
+                alert(postData);
+                
                 //AJAX call
                 $.ajax({
                     type: "POST",
@@ -93,9 +101,13 @@
                     data: postData,
                     cache: false,
                     success: function(result){
+                        alert("SUCCESS");
+                        document.getElementById("input_form").reset();
                         document.getElementById("hidden-form").reset();
                         }
                     });
+                document.getElementById("oz_btn").disabled = false;
+                document.getElementById("g_btn").disabled = false;
             }
         </script>
     </head>
@@ -114,8 +126,8 @@
                 <form id="input_form">
                     <fieldset id="input_fieldset">
                         <legend>Calculator</legend>
-                        <label for="name"> Ingrendient Name: </label>
-                        <input type="text" class="box_input" id="name" name="name" autocomplete="off"><br>
+                        <label for="ing_name"> Ingrendient Name: </label>
+                        <input type="text" class="box_input" id="ing_name" name="ing_name" autocomplete="off"><br>
 
                         <label for="servings"> Number of Servings: </label>
                         <input type="number" class="box_input" id="servings" name="servings"><br>
@@ -159,17 +171,17 @@
 
             <div class="col" id="info_box">
                 <form id="hidden-form">
-                    <input type="hidden" class="hidden_input" id="name-hidden">
-                    <input type="hidden" class="hidden_input" id="total-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="servings-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="cals-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="fats-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="carbs-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="protein-hidden" value="0">
-                    <input type="hidden" class="hidden_input" id="unit-hidden">
-                    <input type="hidden" class="hidden_input" id="recipe_id-hidden" value=<?php echo $recipe_id?> >
-                    <input type="hidden" class="hidden_input" id="recipe_name-hidden" value=<?php echo $recipe_name?> >
-                    <input type="hidden" class="hidden_input" id="goal-hidden" value=<?php echo $goal?> >
+                    <input type="hidden" class="hidden_input" id="ing_name-hidden" name="ing_name-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="total-hidden" name="total-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="servings-hidden" name="servings-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="cals-hidden" name="cals-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="fats-hidden" name="fats-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="carbs-hidden" name="carbs-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="protein-hidden" name="protein-hidden" value="0">
+                    <input type="hidden" class="hidden_input" id="unit-hidden" name="unit-hidden">
+                    <input type="hidden" class="hidden_input" id="recipe_id-hidden" name="recipe_id-hidden" value=<?php echo $recipe_id?> >
+                    <input type="hidden" class="hidden_input" id="recipe_name-hidden" name="recipe_name-hidden" value=<?php echo $recipe_name?> >
+                    <input type="hidden" class="hidden_input" id="goal-hidden" name="goal-hidden" value=<?php echo $goal?> >
                 </form>
 
                 <fieldset id="instruction_fieldset">
