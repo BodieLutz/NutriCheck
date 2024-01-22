@@ -2,15 +2,15 @@
 include 'database.php';
 $conn = getConnection();
 
-$recipe_name = $_POST['recipe_name'];
-$recipe_id = $_POST['recipe_id'];
-$cals = $_POST['cals'];
-$carbs = $_POST['carbs'];
-$fats = $_POST['fats'];
-$protein = $_POST['protein'];
-$unit = $_POST['unit'];
-$goal = $_POST['goal'];
+$recipe_name = $_POST['recipe_name-hidden'];
+$recipe_id = $_POST['recipe_id-hidden'];
+$cals = $_POST['cals-hidden'];
+$carbs = $_POST['carbs-hidden'];
+$fats = $_POST['fats-hidden'];
+$protein = $_POST['protein-hidden'];
+$unit = $_POST['unit-hidden'];
+$goal = $_POST['goal-hidden'];
 
-echo $cals;
+
 addRecipe($conn, $recipe_name, $unit, $goal, $cals, $protein, $fats, $carbs);
 

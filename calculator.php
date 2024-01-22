@@ -88,6 +88,12 @@
                 document.getElementById("carbs-result").value = carbs;
                 document.getElementById("protein-result").value = protein;
 
+                //Set the hidden values
+                document.getElementById("cals-hidden").value = cals;
+                document.getElementById("fats-hidden").value = fats;
+                document.getElementById("carbs-hidden").value = carbs;
+                document.getElementById("protein-hidden").value = protein;
+
                 //Add recipe to the database
 
                 //make the post data for the AJAX call
