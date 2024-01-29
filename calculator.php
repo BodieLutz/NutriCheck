@@ -59,7 +59,6 @@
                         <div id="button_box">
                             <input type="button" class="button" id="next" value="Next" onclick="nextIngredient()">
                             <input type="button" class="button" id="finish" value="Finish" onclick="addRecipeAndCompute()">
-                            <a href="calculator.php"><button id="reset_btn">Reset</button></a>
                         </div>
                     </fieldset>
                 </form>
@@ -246,6 +245,7 @@
                     });
                 
             }
+
         </script>
 
 </html>
