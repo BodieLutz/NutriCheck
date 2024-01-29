@@ -19,7 +19,7 @@
 
         <div class="row">
             <div id="input_box" class="col">
-                <form id="input_form">
+                <form id="input_form" name="input_form">
                     <fieldset id="input_fieldset">
                         <legend>Calculator</legend>
                         <label for="ing_name"> Ingrendient Name: </label>
@@ -160,17 +160,20 @@
                         alert("Ingredient has been added to the database");
                         //reset the form
                         document.getElementById("input_form").reset();
+
+                        //Ensure same unit is selected and cannot be changed
+                            if(unit == "oz"){
+                                //document.getElementById("oz_btn").checked=true;
+                                document.getElementById("oz_btn").checked=true;
+                                alert("IN HERE");
+                            }else{
+                                document.getElementById("g_btn").checked = true;
+                            }
+                            //Disable buttons so user always uses they're selected unit
+                            document.getElementById("oz_btn").disabled = true;
+                            document.getElementById("g_btn").disabled = true;
                         }
                     });
-
-                //Ensure same unit is selected and cannot be changed
-                if(unit == "oz"){
-                    document.getElementById("oz_btn").checked = true;
-                }else{
-                    document.getElementById("g_btn").checked = true;
-                }
-                //document.getElementById("oz_btn").disabled = true;
-                //document.getElementById("g_btn").disabled = true;
             }
 
             function addRecipeAndCompute(){
@@ -229,10 +232,16 @@
                     success: function(result){
                         document.getElementById("input_form").reset();
                         document.getElementById("hidden-form").reset();
+                        //Re-enable buttons
+                        document.getElementById("oz_btn").disabled = false;
+                        document.getElementById("g_btn").disabled = false;
+
+                        //Clear buttons
+                        document.getElementById("oz_btn").checked = false;
+                        document.getElementById("g_btn").checked = false;
                         }
                     });
-                document.getElementById("oz_btn").disabled = false;
-                document.getElementById("g_btn").disabled = false;
+                
             }
         </script>
 
