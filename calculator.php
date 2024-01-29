@@ -123,6 +123,9 @@
                 var protein = parseInt(document.getElementById("protein").value);
 
                 var cals_sub = cals;
+                var fats_sub = fats;
+                var carbs_sub = carbs;
+                var protein_sub = protein;
                 
                 //get previous sum from hidden fields
                 var prev_weight = parseInt(document.getElementById("total-hidden").value);
@@ -148,7 +151,7 @@
  
                 //get data for AJAX
                 var recipeID = parseInt(document.getElementById("recipe_id-hidden").value);
-                var postData = "recipeID="+recipeID+"&unit="+unit+"&servings="+servings+"&fats="+fats+"&carbs="+carbs+"&protein="+protein+"&weight="+weight+"&cals="+cals_sub+"&name="+name;
+                var postData = "recipeID="+recipeID+"&unit="+unit+"&servings="+servings+"&fats="+fats_sub+"&carbs="+carbs_sub+"&protein="+protein_sub+"&weight="+weight+"&cals="+cals_sub+"&name="+name;
                 alert(postData);
                 //AJAX call
                 $.ajax({
