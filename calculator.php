@@ -6,116 +6,6 @@
         <link rel="stylesheet" href="calculator.css">
         <link rel="stylesheet" href="common.css"> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script>
-            function nextIngredient(){
-                //get user-entered infromation
-                var servings = parseInt(document.getElementById("servings").value);
-                var weight = parseInt(document.getElementById("total").value);
-                var unit = document.querySelector('input[name="unit"]:checked').value;
-                var cals = parseInt(document.getElementById("cals").value);
-                var fats = parseInt(document.getElementById("fats").value);
-                var carbs = parseInt(document.getElementById("carbs").value);
-                var protein = parseInt(document.getElementById("protein").value);
-                
-                //get previous sum from hidden fields
-                var prev_weight = parseInt(document.getElementById("total-hidden").value);
-                var prev_cals = parseInt(document.getElementById("cals-hidden").value);
-                var prev_fats = parseInt(document.getElementById("fats-hidden").value);
-                var prev_carbs = parseInt(document.getElementById("carbs-hidden").value);
-                var prev_protein = parseInt(document.getElementById("protein-hidden").value);
-
-                //increment the sums
-                weight = weight + prev_weight;
-                cals = (cals*servings) + prev_cals;
-                fats = (fats*servings) + prev_fats;
-                carbs = (carbs*servings) + prev_carbs;
-                protein = (protein*servings) + prev_protein;
-
-                //update the hidden fields
-                document.getElementById("servings-hidden").value = servings;
-                document.getElementById("total-hidden").value = weight;
-                document.getElementById("carbs-hidden").value = carbs;
-                document.getElementById("cals-hidden").value = cals;
-                document.getElementById("fats-hidden").value = fats;
-                document.getElementById("protein-hidden").value = protein;
-
-                //reset the form
-                //document.getElementById("input_form").reset();
-
-                //Ensure same unit is selected and cannot be changed
-                if(unit == "oz"){
-                    document.getElementById("oz_btn").checked = true;
-                }else{
-                    document.getElementById("g_btn").checked = true;
-                }
-                document.getElementById("oz_btn").disabled = true;
-                document.getElementById("g_btn").disabled = true;
-            }
-
-            function addRecipeAndCompute(){
-                nextIngredient();
-                
-                //Get the sum for all variables
-                var weight = parseInt(document.getElementById("total-hidden").value);
-                var cals = parseInt(document.getElementById("cals-hidden").value);
-                var fats = parseInt(document.getElementById("fats-hidden").value);
-                var carbs = parseInt(document.getElementById("carbs-hidden").value);
-                var protein = parseInt(document.getElementById("protein-hidden").value);
-                var unit = document.querySelector('input[name="unit"]:checked').value;
-                var recipe_name = document.getElementById("recipe_name-hidden").value;
-                var recipe_id = parseInt(document.getElementById("recipe_id-hidden").value);
-                var goal = document.getElementById("goal-hidden").value;
-
-                //Change label to display selected unit
-                document.getElementById("unit_label").innerHTML = unit;
-
-                //Set unit-hidden label to correct unit
-                document.getElementById("unit-hidden").value = unit;
-
-                //Set the ing_name-hidden label
-                let name = document.getElementById("ing_name").value;
-                document.getElementById("ing_name-hidden").value = name;
-
-                //round values
-                cals = (cals/weight).toFixed(1);
-                fats = (fats/weight).toFixed(1);
-                carbs = (carbs/weight).toFixed(1);
-                protein = (protein/weight).toFixed(1);
-
-                //Set readonly fields to display the output
-                document.getElementById("cals-result").value = cals;
-                document.getElementById("fats-result").value = fats;
-                document.getElementById("carbs-result").value = carbs;
-                document.getElementById("protein-result").value = protein;
-
-                //Set the hidden values
-                document.getElementById("cals-hidden").value = cals;
-                document.getElementById("fats-hidden").value = fats;
-                document.getElementById("carbs-hidden").value = carbs;
-                document.getElementById("protein-hidden").value = protein;
-
-                //Add recipe to the database
-
-                //make the post data for the AJAX call
-                var postData = $('#hidden-form').serialize();
-                alert(postData);
-                
-                //AJAX call
-                $.ajax({
-                    type: "POST",
-                    url: "add_recipe.php",
-                    data: postData,
-                    cache: false,
-                    success: function(result){
-                        alert("SUCCESS");
-                        document.getElementById("input_form").reset();
-                        document.getElementById("hidden-form").reset();
-                        }
-                    });
-                document.getElementById("oz_btn").disabled = false;
-                document.getElementById("g_btn").disabled = false;
-            }
-        </script>
     </head>
 
     <?php 
@@ -219,5 +109,131 @@
             </div>
         </div>
     </body>
+
+    <script>
+            function nextIngredient(){
+                //get user-entered infromation
+                var name = document.getElementById('ing_name').value;
+                var servings = parseInt(document.getElementById("servings").value);
+                var weight = parseInt(document.getElementById("total").value);
+                var unit = document.querySelector('input[name="unit"]:checked').value;
+                var cals = parseInt(document.getElementById("cals").value);
+                var fats = parseInt(document.getElementById("fats").value);
+                var carbs = parseInt(document.getElementById("carbs").value);
+                var protein = parseInt(document.getElementById("protein").value);
+
+                var cals_sub = cals;
+                
+                //get previous sum from hidden fields
+                var prev_weight = parseInt(document.getElementById("total-hidden").value);
+                var prev_cals = parseInt(document.getElementById("cals-hidden").value);
+                var prev_fats = parseInt(document.getElementById("fats-hidden").value);
+                var prev_carbs = parseInt(document.getElementById("carbs-hidden").value);
+                var prev_protein = parseInt(document.getElementById("protein-hidden").value);
+
+                //increment the sums
+                weight = weight + prev_weight;
+                cals = (cals*servings) + prev_cals;
+                fats = (fats*servings) + prev_fats;
+                carbs = (carbs*servings) + prev_carbs;
+                protein = (protein*servings) + prev_protein;
+
+                //update the hidden fields
+                document.getElementById("servings-hidden").value = servings;
+                document.getElementById("total-hidden").value = weight;
+                document.getElementById("carbs-hidden").value = carbs;
+                document.getElementById("cals-hidden").value = cals;
+                document.getElementById("fats-hidden").value = fats;
+                document.getElementById("protein-hidden").value = protein;
+ 
+                //get data for AJAX
+                var recipeID = parseInt(document.getElementById("recipe_id-hidden").value);
+                var postData = "recipeID="+recipeID+"&unit="+unit+"&servings="+servings+"&fats="+fats+"&carbs="+carbs+"&protein="+protein+"&weight="+weight+"&cals="+cals_sub+"&name="+name;
+                alert(postData);
+                //AJAX call
+                $.ajax({
+                    type: "POST",
+                    url: "add_ingredient.php",
+                    data: postData,
+                    cache: false,
+                    success: function(result){
+                        alert("Ingredient has been added to the database");
+                        //reset the form
+                        document.getElementById("input_form").reset();
+                        }
+                    });
+
+                //Ensure same unit is selected and cannot be changed
+                if(unit == "oz"){
+                    document.getElementById("oz_btn").checked = true;
+                }else{
+                    document.getElementById("g_btn").checked = true;
+                }
+                //document.getElementById("oz_btn").disabled = true;
+                //document.getElementById("g_btn").disabled = true;
+            }
+
+            function addRecipeAndCompute(){
+                nextIngredient();
+                
+                //Get the sum for all variables
+                var weight = parseInt(document.getElementById("total-hidden").value);
+                var cals = parseInt(document.getElementById("cals-hidden").value);
+                var fats = parseInt(document.getElementById("fats-hidden").value);
+                var carbs = parseInt(document.getElementById("carbs-hidden").value);
+                var protein = parseInt(document.getElementById("protein-hidden").value);
+                var unit = document.querySelector('input[name="unit"]:checked').value;
+                var recipe_name = document.getElementById("recipe_name-hidden").value;
+                var recipe_id = parseInt(document.getElementById("recipe_id-hidden").value);
+                var goal = document.getElementById("goal-hidden").value;
+
+                //Change label to display selected unit
+                document.getElementById("unit_label").innerHTML = unit;
+
+                //Set unit-hidden label to correct unit
+                document.getElementById("unit-hidden").value = unit;
+
+                //Set the ing_name-hidden label
+                let name = document.getElementById("ing_name").value;
+                document.getElementById("ing_name-hidden").value = name;
+
+                //round values
+                cals = (cals/weight).toFixed(1);
+                fats = (fats/weight).toFixed(1);
+                carbs = (carbs/weight).toFixed(1);
+                protein = (protein/weight).toFixed(1);
+
+                //Set readonly fields to display the output
+                document.getElementById("cals-result").value = cals;
+                document.getElementById("fats-result").value = fats;
+                document.getElementById("carbs-result").value = carbs;
+                document.getElementById("protein-result").value = protein;
+
+                //Set the hidden values
+                document.getElementById("cals-hidden").value = cals;
+                document.getElementById("fats-hidden").value = fats;
+                document.getElementById("carbs-hidden").value = carbs;
+                document.getElementById("protein-hidden").value = protein;
+
+                //Add recipe to the database
+
+                //make the post data for the AJAX call
+                var postData = $('#hidden-form').serialize();
+                console.log(postData);
+                //AJAX call
+                $.ajax({
+                    type: "POST",
+                    url: "add_recipe.php",
+                    data: postData,
+                    cache: false,
+                    success: function(result){
+                        document.getElementById("input_form").reset();
+                        document.getElementById("hidden-form").reset();
+                        }
+                    });
+                document.getElementById("oz_btn").disabled = false;
+                document.getElementById("g_btn").disabled = false;
+            }
+        </script>
 
 </html>
