@@ -1,9 +1,52 @@
+*{
+    background-color: #393D3F;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root {
+    --form-control-color: #fe7f2d;
+  }
+
 .row{
     display: flex;
 }
 
 .col{
+    flex: 50%;
     border: 3px solid black;
     border-radius: 5px;
-    flex: 50%;
+}
+
+.col fieldset{
+    margin: 20px 40px;
+    padding: 20px;
+    border: black 3px solid;
+    border-radius: 5px;
+}
+
+.box_input{
+    border: 3px solid #fe7f2d;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 10px #fe7f2d;
+    padding: 5px 10px;
+    color: #fdfdff;
+    font-size: 12pt;
+}
+
+.box_input:focus{
+    border: 3px solid #5688C7;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 0 10px #5688C7;
+}
+
+label{
+    color: #fdfdff;
+    font-size: 16pt;
+}
+
+legend{
+    color: var(--form-control-color);
+    font-size: 16pt;
 }
