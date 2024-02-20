@@ -8,7 +8,7 @@ $data = $_GET['data'];
 $type = $_GET['type'];
 ?>
 
-<?php $result = getIngredientByValue($conn, $data, $type);
+<?php $result = getRecipeByValue($conn, $data, $type);
 ?>
         <?php if (!$result){ ?>
             <?php echo "No ingredients can be found" ?>
@@ -36,7 +36,9 @@ $type = $_GET['type'];
 
             <table id="display-table">
             <tr>
-                <th>Ingredient Name</th>
+                <th>Recipe Name</th>
+                <th>Goal</th>
+                <th>Unit</th>
                 <th>Cals</th>
                 <th>Carbs</th>
                 <th>Fats</th>
@@ -47,6 +49,8 @@ $type = $_GET['type'];
             <?php foreach($result as $row): ?>
             <tr>
                 <td style><?= $row['name'] ?></td>
+                <td style><?= $row['goal'] ?></td>
+                <td style><?= $row['unit'] ?></td>
                 <td style><?= $row['cals'] ?></td>
                 <td style><?= $row['carbs'] ?></td>
                 <td style><?= $row['fats'] ?></td>     

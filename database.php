@@ -40,13 +40,34 @@ function addIngredient($conn, $recipeID, $name, $unit, $weight, $servings, $cals
     $stmt->execute();
 }
 
-function getIngredientByName($conn, $data, $type){
+function getIngredientByValue($conn, $data, $type){
 
     if($type == 'name'){
         $stmt = $conn->prepare("SELECT * FROM ingredients WHERE name LIKE ?");
         $stmt->bind_param('s', $data);
     }else{
         $stmt = $conn->prepare("SELECT * FROM ingredients WHERE cals<=?");
+        $stmt->bind_param('d', $data);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getRecipeByValue($conn, $data, $type){
+
+    if($type == 'name'){
+        $stmt = $conn->prepare("SELECT * FROM recipes WHERE name LIKE ?");
+        $stmt->bind_param('s', $data);
+    }else if($type == 'cals'){
+        $stmt = $conn->prepare("SELECT * FROM recipes WHERE cals<=?");
+        $stmt->bind_param('d', $data);
+    }else if($type == 'goal'){
+        $stmt = $conn->prepare("SELECT * FROM recipes WHERE goal LIKE ?");
+        $stmt->bind_param('s', $data);
+    }else{
+        $stmt = $conn->prepare("SELECT * FROM recipes WHERE protein>=?");
         $stmt->bind_param('d', $data);
     }
 

@@ -34,7 +34,7 @@
                         <br><br><br>
 
                         <label for="recipe-goal">Goal: </label>
-                        <input type="text" name="recipe-goal" id="recipe-goal" class="box_input recipe">
+                        <input type="text" name="recipe-goal" id="recipe-goal" class="box_input recipe" onkeyup = "checkGoal(this.value)">
                         <br><br><br>
 
                         <label for="recipe-cals">Calories: </label>
@@ -42,7 +42,7 @@
                         <br><br><br>
 
                         <label for="recipe-protein">Protein: </label>
-                        <input type="number" name="recipe-protein" id="recipe-protein" class="box_input recipe">
+                        <input type="number" name="recipe-protein" id="recipe-protein" class="box_input recipe" onkeyup = "checkProtein(this.value)">
                         <br>
 
                     </fieldset>
@@ -100,6 +100,44 @@
             }
             };
             xmlhttp.open("GET", file+"?data="+choice+"&type=cals", true);
+            xmlhttp.send();
+        }
+
+        function checkGoal(value){
+            var choice = document.getElementById('recipe-goal').value;
+            var file = "get_recipe_table.php";
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                info = this.responseText;
+                document.getElementById("table-div").innerHTML = info;
+                if(value == ""){
+                    document.getElementById("table-div").innerHTML = '';
+                }
+                //highlight_row();
+            }
+            };
+            xmlhttp.open("GET", file+"?data="+choice+"&type=goal", true);
+            xmlhttp.send();
+        }
+
+        function checkProtein(value){
+            var choice = document.getElementById('recipe-protein').value;
+            var file = "get_recipe_table.php";
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                info = this.responseText;
+                document.getElementById("table-div").innerHTML = info;
+                if(value == ""){
+                    document.getElementById("table-div").innerHTML = '';
+                }
+                //highlight_row();
+            }
+            };
+            xmlhttp.open("GET", file+"?data="+choice+"&type=protein", true);
             xmlhttp.send();
         }
 
