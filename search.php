@@ -20,7 +20,7 @@
                         <br><br><br>
 
                         <label for="ing-cals">Calories: </label>
-                        <input type="number" name="ing-cals" id="ing-cals" class="box_input ingredient">
+                        <input type="number" name="ing-cals" id="ing-cals" class="box_input ingredient" onkeyup = "checkCalories(this.value, 'ing')">
                         <br>
 
                     </fieldset>
@@ -38,7 +38,7 @@
                         <br><br><br>
 
                         <label for="recipe-cals">Calories: </label>
-                        <input type="number" name="recipe-cals" id="recipe-cals" class="box_input recipe">
+                        <input type="number" name="recipe-cals" id="recipe-cals" class="box_input recipe" onkeyup = "checkCalories(this.value, 'recipe')">
                         <br><br><br>
 
                         <label for="recipe-protein">Protein: </label>
@@ -58,8 +58,10 @@
         function checkName(value, type){
             if(type == 'ing'){
                 var choice = document.getElementById('ing-name').value;
+                var file = "get_ingredient_table.php";
             }else{
                 var choice = document.getElementById('recipe-name').value;
+                var file = "get_recipe_table.php";
             }
 
             var xmlhttp = new XMLHttpRequest();
@@ -70,18 +72,20 @@
                 if(value == ""){
                     document.getElementById("table-div").innerHTML = '';
                 }
-                highlight_row();
+                //highlight_row();
             }
             };
-            xmlhttp.open("GET", "get_ingredient_table.php?data="+choice+"&type=name", true);
+            xmlhttp.open("GET", file+"?data="+choice+"&type=name", true);
             xmlhttp.send();
         }
 
         function checkCalories(value, type){
             if(type == 'ing'){
-                var choice = document.getElementById('ing-name').value;
+                var choice = document.getElementById('ing-cals').value;
+                var file = "get_ingredient_table.php";
             }else{
-                var choice = document.getElementById('recipe-name').value;
+                var choice = document.getElementById('recipe-cals').value;
+                var file = "get_recipe_table.php";
             }
 
             var xmlhttp = new XMLHttpRequest();
@@ -92,16 +96,16 @@
                 if(value == ""){
                     document.getElementById("table-div").innerHTML = '';
                 }
-                highlight_row();
+                //highlight_row();
             }
             };
-            xmlhttp.open("GET", "get_ingredient_table.php?data="+choice+"&type=name", true);
+            xmlhttp.open("GET", file+"?data="+choice+"&type=cals", true);
             xmlhttp.send();
         }
 
-
+        /*
         function highlight_row() {
-                var table = document.getElementById('customer_table');
+                var table = document.getElementById('display-table');
                 var cells = table.getElementsByTagName('td');
 
                 for (var i = 0; i < cells.length; i++) {
@@ -126,7 +130,7 @@
                         //document.getElementById('email').value = rowSelected.cells[3].innerHTML;
                     }
                 }
-        }
+        }*/
 
     </script>
 

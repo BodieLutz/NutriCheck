@@ -34,7 +34,7 @@ $type = $_GET['type'];
                 }
             </style>
 
-            <table id="customer_table">
+            <table id="display-table">
             <tr>
                 <th>Ingredient Name</th>
                 <th>Cals</th>
