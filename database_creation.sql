@@ -9,10 +9,10 @@ CREATE TABLE Recipes(
     name varchar(255),
     unit varchar(255),
     goal varchar(255),
-    cals int,
-    protein int,
-    fats int,
-    carbs int,
+    cals float,
+    protein float,
+    fats float,
+    carbs float,
     PRIMARY KEY(id)
 );
 
@@ -21,12 +21,12 @@ CREATE TABLE Ingredients(
     recipe_id int,
     name varchar(255),
     unit varchar(255),
-    total_weight int,
+    total_weight float,
     num_serv int,
-    cals int,
-    protein int,
-    fats int,
-    carbs int,
+    cals float,
+    protein float,
+    fats float,
+    carbs float,
     PRIMARY KEY(id)
 );
 
