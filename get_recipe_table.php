@@ -21,14 +21,15 @@ $type = $_GET['type'];
                 }
 
                 td, th{
-                    border: 2px solid white;
-                    width: fit-content;
+                    border: 3px solid #fe7f2d;
+                    box-shadow: 0 0 10px #fe7f2d;
+                    border-radius: 5px;
+                    color: white;
+                    width: 100px;
+                    padding: 15px 5px;
+                    text-align: center;
                 }
 
-                th, td{
-                    padding: 15px;
-                    text-align: left;
-                }
                 tr:hover{
                     background-color: #fe7f2d;
                 }

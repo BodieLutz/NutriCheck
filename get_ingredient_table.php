@@ -18,16 +18,17 @@ $type = $_GET['type'];
                     margin-left: 50px;
                     border-collapse: collapse;
                     font-size: 12pt;
+                    border-radius: 5px;
                 }
 
                 td, th{
-                    border: 2px solid white;
-                    width: fit-content;
-                }
-
-                th, td{
+                    border: 3px solid #fe7f2d;
+                    box-shadow: 0 0 10px #fe7f2d;
+                    border-radius: 5px;
+                    color: white;
+                    width: 100px;
                     padding: 15px;
-                    text-align: left;
+                    text-align: center;
                 }
                 tr:hover{
                     background-color: #fe7f2d;
