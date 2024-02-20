@@ -12,5 +12,5 @@ $unit = $_POST['unit-hidden'];
 $goal = $_POST['goal-hidden'];
 
 
-addRecipe($conn, $recipe_name, $unit, $goal, $cals, $protein, $fats, $carbs);
+updateRecipe($conn, $unit, $cals, $protein, $fats, $carbs, $recipe_id);
 

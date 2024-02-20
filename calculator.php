@@ -1,3 +1,8 @@
+<?php
+    include 'database.php';
+    $conn = getConnection();
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -12,6 +17,8 @@
         $recipe_name = $_POST['name'];
         $goal = $_POST['goal'];
         $recipe_id = $_POST['id'];
+
+        createRecipe($conn, $recipe_name, $goal);
     ?>
 
     <body>
@@ -57,8 +64,9 @@
                         <input type="number" class="box_input" id="protein" name="protein"><br>
 
                         <div id="button_box">
-                            <input type="button" class="button" id="next" value="Next" onclick="nextIngredient()">
+                            <input type="button" class="button" id="next" value="Next" onclick="addIngredient()">
                             <input type="button" class="button" id="finish" value="Finish" onclick="addRecipeAndCompute()">
+                            <input type="button" class="button" id="finish" value="Add" onclick="addToDatabase()">
                         </div>
                     </fieldset>
                 </form>
@@ -110,7 +118,8 @@
     </body>
 
     <script>
-            function nextIngredient(){
+
+            function addIngredient(){
                 //get user-entered infromation
                 var name = document.getElementById('ing_name').value;
                 var servings = parseInt(document.getElementById("servings").value);
@@ -125,6 +134,10 @@
                 var fats_sub = fats;
                 var carbs_sub = carbs;
                 var protein_sub = protein;
+                var weight_sub = weight;
+                var servings_sub = servings;
+
+                document.cookie = "cals="+cals_sub+";"+"fats="+fats_sub+";"+"carbs="+carbs_sub+";"+"protein="+protein_sub+";"+"weight="+weight_sub+";"+"servings="+servings_sub+";";
                 
                 //get previous sum from hidden fields
                 var prev_weight = parseInt(document.getElementById("total-hidden").value);
@@ -149,14 +162,17 @@
                 document.getElementById("protein-hidden").value = protein;
  
                 //get data for AJAX
+                
                 var recipeID = parseInt(document.getElementById("recipe_id-hidden").value);
-                var postData = "recipeID="+recipeID+"&unit="+unit+"&servings="+servings+"&fats="+fats_sub+"&carbs="+carbs_sub+"&protein="+protein_sub+"&weight="+weight+"&cals="+cals_sub+"&name="+name;
-                alert(postData);
+
+                
+                var ingredientData = "recipeID="+recipeID+"&unit="+unit+"&servings="+servings_sub+"&fats="+fats_sub+"&carbs="+carbs_sub+"&protein="+protein_sub+"&weight="+weight_sub+"&cals="+cals_sub+"&name="+name;
+                alert(ingredientData);
                 //AJAX call
                 $.ajax({
                     type: "POST",
                     url: "add_ingredient.php",
-                    data: postData,
+                    data: ingredientData,
                     cache: false,
                     success: function(result){
                         alert("Ingredient has been added to the database");
@@ -165,9 +181,7 @@
 
                         //Ensure same unit is selected and cannot be changed
                             if(unit == "oz"){
-                                //document.getElementById("oz_btn").checked=true;
                                 document.getElementById("oz_btn").checked=true;
-                                alert("IN HERE");
                             }else{
                                 document.getElementById("g_btn").checked = true;
                             }
@@ -175,11 +189,11 @@
                             document.getElementById("oz_btn").disabled = true;
                             document.getElementById("g_btn").disabled = true;
                         }
-                    });
+                    });             
             }
 
             function addRecipeAndCompute(){
-                nextIngredient();
+                addIngredient();
                 
                 //Get the sum for all variables
                 var weight = parseInt(document.getElementById("total-hidden").value);

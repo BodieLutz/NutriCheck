@@ -27,16 +27,14 @@ CREATE TABLE Ingredients(
     protein int,
     fats int,
     carbs int,
-    PRIMARY KEY(id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes(id)
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE Instructions(
     id int AUTO_INCREMENT,
     recipe_id int,
     page varchar(255),
-    PRIMARY KEY(id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes(id)
+    PRIMARY KEY(id)
 );
 
 INSERT INTO Recipes(name, unit, goal, cals, protein, fats, carbs) VALUES ("Chicken Noodle", "oz", "NA", 62.1, 1.9, 1.5, 9.6);
