@@ -40,4 +40,19 @@ function addIngredient($conn, $recipeID, $name, $unit, $weight, $servings, $cals
     $stmt->execute();
 }
 
+function getIngredientByName($conn, $data, $type){
+
+    if($type == 'name'){
+        $stmt = $conn->prepare("SELECT * FROM ingredients WHERE name LIKE ?");
+        $stmt->bind_param('s', $data);
+    }else{
+        $stmt = $conn->prepare("SELECT * FROM ingredients WHERE cals<=?");
+        $stmt->bind_param('d', $data);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 ?>
